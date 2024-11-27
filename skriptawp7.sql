@@ -1,6 +1,14 @@
 ﻿-- ovako se pisu komentari
 
--- ova naredba kreira bazu podataka
+use master;
+go
+drop database if exists edunovawp7;
+go
+create database edunovawp7;
+go 
+use edunovawp7;
+go
+
 --create database edunovawp7;
 
 -- use edunovawp7;
