@@ -4,37 +4,23 @@ use master;
 go
 drop database if exists edunovawp7;
 go
-create database edunovawp7;
+create database test123;
 go 
-use edunovawp7;
+use test123;
 go
 
-create table smjerovi (
-sifra int,
-naziv varchar(50),
-trajanje int, 
-cijena decimal(18,2),
-vaucer bit, 
-izvodiseod datetime
+
+create table ispitnirok(
+sifra int, 
+predmet varchar (20),
+vrsta ispita varchar (20),
+datum int, 
+pristupio varchar (20)
 );
 
-create table polaznici(
-sifra int,
-ime varchar(50),
-prezime varchar(50),
-oib char(11),
-email varchar(100)
-);
-
-create table grupe(
-sifra int,
-naziv varchar(20),
-smjer int,
-predavac varchar(50)
-);
-
-
-create table clanovi(
-grupa int,
-polaznik int
+create table pristupnici(
+ispitni rok varchar(20),
+student varchar(20),
+brojbodova int,
+ocjena varchar(20),
 );
