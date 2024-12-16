@@ -1,4 +1,4 @@
-﻿﻿-- Ovako se pišu komentari
+﻿--Ovako se pišu komentari
 
 use master;
 go 
@@ -88,8 +88,8 @@ INSERT INTO polaznici (ime, prezime, email) VALUES
 ('Boris', 'Bukovec', 'botaosijek@gmail.com'),
 ('Luka', 'Jurak', 'jurakluka18@gmail.com'),
 ('Ivan', 'Strmečki', 'ivan.strmecki8@gmail.com'),
-('Bruno', 'Bašić', 'brunobasic031@gmail.com'),
-('Jakov', 'Antolović', 'jakovantolović@gmail.com','54511389834');
+('Bruno', 'Bašić', 'brunobasic031@gmail.com');
+
 
 
 
@@ -101,3 +101,39 @@ insert into clanovi (grupa,polaznik) values
 (2,25),(2,26),(2,27),
 
 (3,7),(3,17),(3,27);
+
+
+select * from smjerovi where sifra=2;
+--mjenjanje samo jedne kolone
+update smjerovi
+set trajanje=300
+where sifra=2;
+
+--mjenjanje vise kolona
+update smjerovi
+set trajanje=200, cijena=1000, vaucer=0
+where sifra=3;
+
+update smjerovi 
+set cijena=999 
+where sifra=2; --2.java (1.webprogramer, 2.java, 3.serviser, 4.knjigovodstvo). Update-ali smo cijenu java tecaja.
+update smjerovi 
+set cijena=777.55 
+where sifra=4; --4. knjigovodstvo 
+
+select * from smjerovi;
+update smjerovi 
+set cijena=cijena * 1.1; -- koristimo matematicku funckiju za izracun %. Te smo ovdje odredili dignuti cijenu svih smjerova za 10%
+update smjerovi 
+set cijena=cijena - 10; -- oduzeti svim smjerovima 10 od ukupne cijene.
+
+
+--Zadatak: Smjeru serviser promjenite početak izvođenja na 02. listopad 2024 u 18:30.
+update smjerovi 
+set izvodiseod= '2024.10.02 18:30' 
+where sifra=3;
+
+select * from smjerovi;
+select * from polaznici;
+select * from grupe;
+select * from clanovi;
