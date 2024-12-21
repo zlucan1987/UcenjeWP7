@@ -16,7 +16,7 @@ namespace Ucenje
 
         public static void Izvedi()
         {
-            Console.Write("Unesi ime: ");
+            Console.Write("Unesi ime : ");
             string ime= Console.ReadLine();
             ime = ime.ToLower();
             
