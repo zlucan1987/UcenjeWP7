@@ -18,7 +18,7 @@ namespace Ucenje
             bool y = false;
 
             bool andResult = (x && y); // ako je x istinit i ako je y istinit onda se podrazumjeva da je istinito
-                                        // u ovom slucaju je False jer Y ne zadovoljava uvjet
+                                       // u ovom slucaju je False jer Y ne zadovoljava uvjet
             Console.WriteLine(andResult);
 
             bool orResult = (x || y); // ako x ili y zadovoljavaju true onda je rezultat istinit= true = tocan, btw -->  || - double pipe oznaka je ujedno oznaka za "or"
@@ -28,10 +28,10 @@ namespace Ucenje
             Console.WriteLine(notResult1);
 
             bool notResult2 = !x; // ! invert x koji je bio true, sada je false
-            Console.WriteLine(notResult2);  
+            Console.WriteLine(notResult2);
+
+
 
         }
-
-
     }
 }
