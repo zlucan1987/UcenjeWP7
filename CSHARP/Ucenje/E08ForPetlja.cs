@@ -83,7 +83,7 @@ namespace Ucenje
             }*/
 
 
-            int[] niz = { 2, 3, 4, 5, 3, 2, 2};
+            int[] niz = { 2, 3, 4, 5, 3, 2, 2 };
 
             // ispisite broj 5
             Console.WriteLine(niz[3]);
@@ -103,21 +103,76 @@ namespace Ucenje
             for (int i = 0; i < redaka; i++)
             {
 
-
-
-
-                for(int j = 0; j<stupaca; j++)
+                for (int j = 0; j < stupaca; j++)
                 {
-                    Console.Write("{0,4} ", (i+1)*(j+1)); // {0,4} stavljamo da bi napravili razmak izmedju brojeva
+                    Console.Write("{0,4} ", (i + 1) * (j + 1)); // {0,4} stavljamo da bi napravili razmak izmedju brojeva
                 }
 
                 Console.WriteLine();
 
 
             }
+            // petlju se moze preskociti - nastaviti
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++");
+            for (int i = 0; i < 10; i++)
+            {
+
+                if (i == 4)// preskoci 5. mjesto
+                {
+                    continue;// vraca na pocetak petlje
+
+                }
+                Console.WriteLine("Rezerviraj {0}. mjesto", i + 1);
+
+            }
+            // petlja se moze "nasilno" prekinuti
+
+            for (int i = 0; i < 10; i++)// prirodni kraj je i=10
+            {
+
+                if (i == 5)
+                {
+                    break; // nasilno prekidam
+                }
+
+                Console.WriteLine(i);
+
+            }
+
+            // korisnost break-a
+            // prim broj, prime number, prosti broj
+            // 2,3,5,7,11,13,17,19 etc
+            // zasto 4 nije prim broj? Cjelobrojno je djeljiv s 2
+
+            int brojZaProvjeru = 157;
+            int brojacIteracija=1;
+            bool prim = true; // moja hipoteza je da taj broj je PRIM broj
+            for (int i = 2; i < brojZaProvjeru/2; i++) 
+            {
+                Console.WriteLine("{0}%{1}=={2} ({3})", brojZaProvjeru, i, brojZaProvjeru%i, brojacIteracija++);
+                if (brojZaProvjeru % i == 0) 
+                {
+                    //TO NIJE PRIM BROJ
+                    prim = false;
+                    break;
+                }
+            }
+            Console.WriteLine("{0} {1} prim broj", brojZaProvjeru, prim ? "JE" : "NIJE");
+
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++");
+
+            // za razbibrigu tijekom dugih zimskih noci https://hr.wikipedia.org/wiki/Eratostenovo_sito
+
+            for (; ; )
+            {
+                Console.WriteLine(new Random().NextInt64() + "" + new Random().NextInt64() + "" + new Random().NextInt64());
+                Thread.Sleep(300);
+                break; //ovo maknuti ako hoćemo beskonačni prikaz brojeva
+            }
 
 
 
-        }       
+        }
+
     }
 }
