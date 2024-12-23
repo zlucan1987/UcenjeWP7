@@ -1,4 +1,5 @@
 ﻿using System;
+using Ucenje;
 
 namespace Ucenje
 {
@@ -41,4 +42,6 @@ namespace Ucenje
         }
 
     }
-}
+}               /* program izvesti iz : 
+                 * using Ucenje;
+                 * Q09Vjezba.Main(new string[] { }); */
