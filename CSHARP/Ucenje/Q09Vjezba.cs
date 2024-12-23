@@ -39,5 +39,6 @@ namespace Ucenje
                 Console.WriteLine("Niste unijeli cijeli broj.");
             }
         }
+
     }
 }
