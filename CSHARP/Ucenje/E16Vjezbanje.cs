@@ -42,13 +42,13 @@ namespace Ucenje
                 case 2:
                     RijecUnazad();
                     Izbornik();
-                    break;            
+                    break;
                 case 3:
-                    GeneratorLozinke();
+                    ProvjeraSigurnostiLozinke();
                     Izbornik();
                     break;
                 case 4:
-                    ProvjeraSigurnostiLozinke();
+                    GeneratorLozinke();
                     Izbornik();
                     break;
                 case 0:
@@ -61,53 +61,66 @@ namespace Ucenje
         }
         private static void GeneratorLozinke()
         {
+            //1. korak ucitavanje duzine lozinke koju korisnik zeli
             int duzina = E14Metode.UcitajBroj("Unesi željenu dužinu lozinke: ");
-            int brojLozinki = E14Metode.UcitajBroj("Unesi broj lozinki za generiranje: ");
+            
+            //2. korak ucitavanje broja lozinki koje zelimo generirati
+            int brojLozinki = E14Metode.UcitajBroj("Unesi broj lozinki za generiranje: "); 
+            
+            //3. korak Skup znakova (definiranje uvjeta za lozinku i koje sve vrste znakova treba ukljuciti u generiranje)
             bool ukljuciVelikaSlova = true; // itd...
             bool ukljuciMalaSlova = true;
             bool ukljuciBrojevi = true;
             bool ukljuciSpecijalniZnakovi = true;
-
-            // Skup znakova
-            string velikaSlova = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string malaSlova = "abcdefghijklmnopqrstuvwxyz";
+            
+            //4. korak definicija razlicitih skupova znakova koji ce biti ukljuceni u random generiranje
+            string velikaSlova = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // ukljuci velika slova
+            string malaSlova = "abcdefghijklmnopqrstuvwxyz"; // ukljuci mala slova itd...
             string brojevi = "0123456789";
             string specijalniZnakovi = "!@#$%^&*()_-+=[]{}|;:,.<>?";
+            
+            //5. korak stvori skup znakova na temelju zadanih uvjeta
             string dostupniZnakovi = "";
             if (ukljuciVelikaSlova) dostupniZnakovi += velikaSlova;
             if (ukljuciMalaSlova) dostupniZnakovi += malaSlova;
             if (ukljuciBrojevi) dostupniZnakovi += brojevi;
             if (ukljuciSpecijalniZnakovi) dostupniZnakovi += specijalniZnakovi;
 
+            // 6. korak: Inicijaliziraj generator nasumičnih brojeva.
             Random random = new Random();
 
 
-            // Generiranje lozinki
+            // 7. korak: Generiraj traženi broj lozinki.
             for (int i = 0; i < brojLozinki; i++)
             {
-                string lozinka = "";
+                string lozinka = ""; // pocetna prazna lozinka
+                // 8. korak: Ponavljaj dok lozinka ne zadovolji uvjete.
                 while (!ProvjeriLozinku(lozinka, duzina, ukljuciVelikaSlova, ukljuciMalaSlova, ukljuciBrojevi, ukljuciSpecijalniZnakovi))
                 {
                     // Generiraj lozinku
                     lozinka = "";
+                    // 9. korak dodavanje po jedan znak iz svake od ukljucenih kategorija
                     if (ukljuciVelikaSlova) lozinka += velikaSlova[random.Next(velikaSlova.Length)];
                     if (ukljuciMalaSlova) lozinka += malaSlova[random.Next(malaSlova.Length)];
                     if (ukljuciBrojevi) lozinka += brojevi[random.Next(brojevi.Length)];
                     if (ukljuciSpecijalniZnakovi) lozinka += specijalniZnakovi[random.Next(specijalniZnakovi.Length)];
 
-                    // Popuni ostatak lozinke nasumičnim znakovima
+                    // 10. korak: Popuni ostatak lozinke nasumičnim znakovima dok ne dosegne traženu dužinu.
                     while (lozinka.Length < duzina)
                     {
                         lozinka += dostupniZnakovi[random.Next(dostupniZnakovi.Length)];
                     }
 
-                    // Promiješaj lozinku
+                    // 11. korak: Promiješaj znakove unutar lozinke za dodatnu nasumičnost.
                     lozinka = new string(lozinka.OrderBy(c => random.Next()).ToArray());
-
-                    //Console.WriteLine("Generirana lozinka: " + lozinka);
-                   // Console.WriteLine("Zadovoljava uvjete: " + ProvjeriLozinku(lozinka, duzina, ukljuciVelikaSlova, ukljuciMalaSlova, ukljuciBrojevi, ukljuciSpecijalniZnakovi));
+                   
+                    
+                    // koristeno za debug xD 
+                    // Console.WriteLine("Generirana lozinka: " + lozinka);
+                    // Console.WriteLine("Zadovoljava uvjete: " + ProvjeriLozinku(lozinka, duzina, ukljuciVelikaSlova, ukljuciMalaSlova, ukljuciBrojevi, ukljuciSpecijalniZnakovi));
                 }
 
+                // 12. korak ispisuje generiranu lozinku
                 Console.WriteLine("Random generirana lozinka: " + lozinka);
             }
         }
@@ -153,44 +166,6 @@ namespace Ucenje
             
             return true;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private static void ProvjeraSigurnostiLozinke()
             {
