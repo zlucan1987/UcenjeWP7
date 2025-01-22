@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Ucenje;
-Q12KalkulatorTest.Izvedi();
+E16Vjezbanje.Izvedi();
 
 //Z02ZimskiZadaci.Izvedi(new string[] { });
 
