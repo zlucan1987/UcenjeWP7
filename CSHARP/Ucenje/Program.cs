@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Ucenje;
-E16Vjezbanje.Izvedi();
+new Ucenje.E17KlasaObjekt.Program();
+
+
 
 //Z02ZimskiZadaci.Izvedi(new string[] { });
 
