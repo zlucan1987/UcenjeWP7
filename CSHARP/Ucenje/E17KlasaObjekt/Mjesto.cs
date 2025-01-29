@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ucenje.E17KlasaObjekt.edunova
+﻿namespace Ucenje.E17KlasaObjekt
 {
     public class Mjesto
     {

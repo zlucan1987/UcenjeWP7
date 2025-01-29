@@ -1,38 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Ucenje.E17KlasaObjekt
 {
-    public class Program 
+    public class Program
     {
-        //5. vrsta metode je konstruktor
+
+        // 5. vrsta metode je konstruktor
         public Program()
         {
-            console.WriteLine("E17");
+            Console.WriteLine("E17");
 
-            // objekt je pojavnost/instanca klase
+            // Objekt je pojavnost/instanca klase  -> Ovo naučiti napamet
             // Osoba (primjetiti veliko slovo O) je klasa
-            // Osoba (primjetiti malo slovo o) je objekt, instanca, varijabla
-
+            // osoba (primjetiti malo slovo o) je objekt, instanca, varijabla
             Osoba osoba = new Osoba(); // kreiranje objekta klase Osoba
 
             osoba.Sifra = 1;
-            osoba.Ime = "Pero";// pozvali smo setter (ucahurivanje)
-            osoba.Prezime = "Peric";
-            osoba.DatumRodjenja = new DateTime(2000, 1, 1);
+            osoba.Ime = "Pero"; // pozvao si setter (ucahurivanje)
+            osoba.Prezime = "Perić";
+            osoba.DatumRodenja = new DateTime(2000, 1, 1);
 
-            console.WriteLine(osoba.Ime); // pozvali smo getter (ucahurivanje)
+
+            Console.WriteLine(osoba.Ime); // pozvao si getter (ucahurivanje)
+
             Osoba[] osobe = new Osoba[3];
+
             osobe[0] = osoba;
-            // upoznati se sa kracom sintaksom za inicijalizaciju objekta
 
-            osobe[1]= new Osoba{Ime = "Ana", Prezime = "Zimska"};
+            // upoznati se s kraćom sintaksom za inicijalizaciju objekata
+            osobe[1] = new Osoba { Ime = "Ana", Prezime = "Zimska" };
+
             Console.WriteLine(osobe[1].Ime);
-            Console.writeline("*******************************************");
-            
-            foreach (Osoba vo in osobe) //vo glumi varijablu osoba
 
+            Console.WriteLine("********************************");
+            foreach (Osoba vo in osobe) // vo mi glumi varijabla osoba
             {
-                Console.WriteLine(vo.Ime?? "Nije postavljeno"); // ovdje ? znaci da ako je null da ne pukne, ?? je null coalescing operator, ako je null onda ispisi "Nije postavljeno"
+                Console.WriteLine(vo?.Ime ?? "Nije postavljeno"); // ovdje ? znaci da ako je null da ne pukne, ?? je null coalescing operator, ako je o null ispisi Nije postavljeno
             }
 
             Console.WriteLine("********************************");
@@ -129,9 +136,4 @@ namespace Ucenje.E17KlasaObjekt
         public bool Vaucer { get; set; }
         public DateTime IzvodiseOd { get; set; }
     }
-}
-        }
-
-    }
-
 }
