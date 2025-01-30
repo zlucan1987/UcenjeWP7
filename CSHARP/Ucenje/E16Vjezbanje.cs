@@ -76,64 +76,130 @@ namespace Ucenje
         }
 
 
+
+
+
+
+
+        
         private static void LjubavniKalkulator()
         {
-            // 1. Unos imena
-            Console.Write("Unesite žensko ime: ");
-            string zenskoIme = Console.ReadLine();
+            string zenskoIme, muskoIme;
 
-            Console.Write("Unesite muško ime: ");
-            string muskoIme = Console.ReadLine();
+            // 1. Unos imena sa provjerama
+            while (true)
+            {
+                Console.Write("Unesite žensko ime (minimalno 3, maksimalno 15 slova): ");
+                zenskoIme = Console.ReadLine();
 
-            // 2. Kombiniranje slova
-            List<char> kombinovanaLista = new List<char>();
-            kombinovanaLista.AddRange(zenskoIme);
-            kombinovanaLista.AddRange(muskoIme);
+                // Provjera da li je ime prazno
+                if (string.IsNullOrWhiteSpace(zenskoIme))
+                {
+                    Console.WriteLine("Ime ne može biti prazno. Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Provjera da ime sadrži samo slova
+                if (!Regex.IsMatch(zenskoIme, @"^[a-zA-Z]+$"))
+                {
+                    Console.WriteLine("Ime može sadržavati samo slova (mala i velika). Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Provjera minimalne i maksimalne duzine imena
+                if (zenskoIme.Length < 3 || zenskoIme.Length > 15)
+                {
+                    Console.WriteLine("Ime mora imati između 3 i 15 slova. Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Pretvaranje imena u mala slova radi lakše usporedbe
+                zenskoIme = zenskoIme.ToLower();
+
+                break; // Ako je ime validno, izađi iz petlje
+            }
+
+            while (true)
+            {
+                Console.Write("Unesite muško ime (minimalno 3, maksimalno 15 slova): ");
+                muskoIme = Console.ReadLine();
+
+                // Provjera da li je ime prazno
+                if (string.IsNullOrWhiteSpace(muskoIme))
+                {
+                    Console.WriteLine("Ime ne može biti prazno. Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Provjera da ime sadrži samo slova
+                if (!Regex.IsMatch(muskoIme, @"^[a-zA-Z]+$"))
+                {
+                    Console.WriteLine("Ime može sadržavati samo slova (mala i velika). Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Provjera minimalne i maksimalne duzine imena
+                if (muskoIme.Length < 3 || muskoIme.Length > 15)
+                {
+                    Console.WriteLine("Ime mora imati između 3 i 15 slova. Pokušajte ponovo.");
+                    continue;
+                }
+
+                // Pretvaranje imena u mala slova radi lakše usporedbe
+                muskoIme = muskoIme.ToLower();
+
+                break; // Ako je ime validno, izađi iz petlje
+            }
+
+            // 2. Kombiniranje slova oba imena u jednu listu
+            List<char> kombiniranaLista = new List<char>();
+            kombiniranaLista.AddRange(zenskoIme);
+            kombiniranaLista.AddRange(muskoIme);
 
             // 3. Brojanje slova u ženskom imenu
-            List<(char, int)> brojanaListaZensko = new List<(char, int)>();
+            List<(char, int)> brojnaListaZensko = new List<(char, int)>();
             foreach (char slovo in zenskoIme)
             {
-                brojanaListaZensko.Add((slovo, kombinovanaLista.Count(c => c == slovo)));
+                brojnaListaZensko.Add((slovo, kombiniranaLista.Count(c => c == slovo)));
             }
 
             // 4. Brojanje slova u muškom imenu
-            List<(char, int)> brojanaListaMusko = new List<(char, int)>();
+            List<(char, int)> brojnaListaMusko = new List<(char, int)>();
             foreach (char slovo in muskoIme)
             {
-                brojanaListaMusko.Add((slovo, kombinovanaLista.Count(c => c == slovo)));
+                brojnaListaMusko.Add((slovo, kombiniranaLista.Count(c => c == slovo)));
             }
 
-            // 5. Kombiniranje prebrojanih slova
-            List<(char, int)> kombinovanaBrojanaLista = new List<(char, int)>();
-            kombinovanaBrojanaLista.AddRange(brojanaListaZensko);
-            kombinovanaBrojanaLista.AddRange(brojanaListaMusko);
+            // 5. Kombiniranje prebrojanih slova iz oba imena u jednu listu
+            List<(char, int)> kombiniranaListaSlova = new List<(char, int)>();
+            kombiniranaListaSlova.AddRange(brojnaListaZensko);
+            kombiniranaListaSlova.AddRange(brojnaListaMusko);
 
-            // 6. Zbrajanje vrijednosti (prvi prolaz)
+            // 6. Zbrajanje vrijednosti slova (prvi prolaz)
             List<int> zbrojenaLista = new List<int>();
-            int i = 0, j = brojanaListaMusko.Count - 1;
+            int i = 0, j = brojnaListaMusko.Count - 1;
 
-            while (i < brojanaListaZensko.Count && j >= 0)
+            while (i < brojnaListaZensko.Count && j >= 0)
             {
-                zbrojenaLista.Add(brojanaListaZensko[i].Item2 + brojanaListaMusko[j].Item2);
+                zbrojenaLista.Add(brojnaListaZensko[i].Item2 + brojnaListaMusko[j].Item2);
                 i++;
                 j--;
             }
 
-            // Ako postoji neparan broj elemenata, prepisujemo ga
-            while (i < brojanaListaZensko.Count)
+            // Ako postoji neparan broj elemenata, prepisujemo ga u zbrojenu listu
+            while (i < brojnaListaZensko.Count)
             {
-                zbrojenaLista.Add(brojanaListaZensko[i].Item2);
+                zbrojenaLista.Add(brojnaListaZensko[i].Item2);
                 i++;
             }
 
             while (j >= 0)
             {
-                zbrojenaLista.Add(brojanaListaMusko[j].Item2);
+                zbrojenaLista.Add(brojnaListaMusko[j].Item2);
                 j--;
             }
 
-            // 7. Kreiranje nove liste sa zbrojenim vrijednostima zbrojene liste
+            // 7. Kreiranje nove liste sa zbrojenim vrijednostima (drugi prolaz)
             List<int> konacnaLista = new List<int>();
             i = 0;
             j = zbrojenaLista.Count - 1;
@@ -203,7 +269,24 @@ namespace Ucenje
                 j--;
             }
 
-            // 9. Spajanje znamenki konačnog rezultata (ako je dvoznamenkast)
+            // 9. Provjera i modifikacija za tri jednoznamenkasta broja
+            if (finalnaLista.Count == 3 && finalnaLista.All(x => x < 10))
+            {
+                int prvi = finalnaLista[0];
+                int poslednji = finalnaLista[2];
+                int srednji = finalnaLista[1];
+
+                // Zbrajanje prvog i posljednjeg broja
+                int rezultat = prvi + poslednji;
+
+                // Kombiniranje rezultata u dvoznamenkasti broj
+                int finalniRezultat = rezultat * 10 + srednji;
+
+                finalnaLista.Clear();
+                finalnaLista.Add(finalniRezultat);
+            }
+
+            // 10. Spajanje znamenki konačnog rezultata (ako je dvoznamenkasti)
             string ljubavniRezultatString = "";
             foreach (int cifra in finalnaLista)
             {
@@ -212,22 +295,21 @@ namespace Ucenje
 
             int ljubavniRezultat = int.Parse(ljubavniRezultatString);
 
-
-            // 10. Ispis rezultata
+            // Ispis rezultata
             Console.WriteLine("\nBroj slova iz oba imena (računato u ženskom imenu):");
-            foreach (var item in brojanaListaZensko)
+            foreach (var item in brojnaListaZensko)
             {
                 Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
             }
 
             Console.WriteLine("\nBroj slova iz oba imena (računato u muškom imenu):");
-            foreach (var item in brojanaListaMusko)
+            foreach (var item in brojnaListaMusko)
             {
                 Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
             }
 
-            Console.WriteLine("\nKombinovana lista svih prebrojanih slova:");
-            foreach (var item in kombinovanaBrojanaLista)
+            Console.WriteLine("\nKombinirana lista svih prebrojanih slova:");
+            foreach (var item in kombiniranaListaSlova)
             {
                 Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
             }
@@ -252,6 +334,8 @@ namespace Ucenje
 
             Console.WriteLine($"\nRezultat ljubavnog kalkulatora je: {ljubavniRezultat} %");
         }
+
+
 
 
 
