@@ -20,45 +20,243 @@ namespace Ucenje
             Console.WriteLine("Doviđenja!");
         }
 
+
         private static void Izbornik()
         {
+            // OcistiKonzolu(); // Dodajemo poziv na funkciju za čišćenje konzole
             Console.WriteLine();
             Console.WriteLine("1. Za uneseni broj provjeri da li je parni ili ne?");
             Console.WriteLine("2. Riječ unazad");
             Console.WriteLine("3. Provjera sigurnosti lozinke");
             Console.WriteLine("4. Generator Lozinke");
+            Console.WriteLine("5. Ljubavni kalkulator");
             Console.WriteLine("0. Izlaz iz aplikacije");
             OdabirOpcijeIzbornika();
         }
+        //private static void OcistiKonzolu()
+        //{
+        //   Console.Clear();
+        //}
 
         private static void OdabirOpcijeIzbornika()
         {
-            switch (E14Metode.UcitajBroj("Odaberi opciju izbornika"))
+            bool izlazIzPrograma = false;
+            while (!izlazIzPrograma)
             {
-                case 1:
-                    ParnostBroja();
-                    Izbornik();
-                    break;
-                case 2:
-                    RijecUnazad();
-                    Izbornik();
-                    break;
-                case 3:
-                    ProvjeraSigurnostiLozinke();
-                    Izbornik();
-                    break;
-                case 4:
-                    GeneratorLozinke();
-                    Izbornik();
-                    break;
-                case 0:
-                    break;
-                default:
-                    Console.WriteLine("Nije opcija izbornika");
-                    Izbornik();
-                    break;
+                switch (E14Metode.UcitajBroj("Odaberi opciju izbornika"))
+                {
+                    case 1:
+                        ParnostBroja();
+                        Izbornik();
+                        break;
+                    case 2:
+                        RijecUnazad();
+                        Izbornik();
+                        break;
+                    case 3:
+                        ProvjeraSigurnostiLozinke();
+                        Izbornik();
+                        break;
+                    case 4:
+                        GeneratorLozinke();
+                        Izbornik();
+                        break;
+                    case 5:
+                        LjubavniKalkulator();
+                        Izbornik();
+                        break;
+                    case 0:
+                        izlazIzPrograma = true;
+                        break;
+                    default:
+                        Console.WriteLine("Nije opcija izbornika");
+                        break;
+                }
             }
         }
+
+
+        private static void LjubavniKalkulator()
+        {
+            // 1. Unos imena
+            Console.Write("Unesite žensko ime: ");
+            string zenskoIme = Console.ReadLine();
+
+            Console.Write("Unesite muško ime: ");
+            string muskoIme = Console.ReadLine();
+
+            // 2. Kombiniranje slova
+            List<char> kombinovanaLista = new List<char>();
+            kombinovanaLista.AddRange(zenskoIme);
+            kombinovanaLista.AddRange(muskoIme);
+
+            // 3. Brojanje slova u ženskom imenu
+            List<(char, int)> brojanaListaZensko = new List<(char, int)>();
+            foreach (char slovo in zenskoIme)
+            {
+                brojanaListaZensko.Add((slovo, kombinovanaLista.Count(c => c == slovo)));
+            }
+
+            // 4. Brojanje slova u muškom imenu
+            List<(char, int)> brojanaListaMusko = new List<(char, int)>();
+            foreach (char slovo in muskoIme)
+            {
+                brojanaListaMusko.Add((slovo, kombinovanaLista.Count(c => c == slovo)));
+            }
+
+            // 5. Kombiniranje prebrojanih slova
+            List<(char, int)> kombinovanaBrojanaLista = new List<(char, int)>();
+            kombinovanaBrojanaLista.AddRange(brojanaListaZensko);
+            kombinovanaBrojanaLista.AddRange(brojanaListaMusko);
+
+            // 6. Zbrajanje vrijednosti (prvi prolaz)
+            List<int> zbrojenaLista = new List<int>();
+            int i = 0, j = brojanaListaMusko.Count - 1;
+
+            while (i < brojanaListaZensko.Count && j >= 0)
+            {
+                zbrojenaLista.Add(brojanaListaZensko[i].Item2 + brojanaListaMusko[j].Item2);
+                i++;
+                j--;
+            }
+
+            // Ako postoji neparan broj elemenata, prepisujemo ga
+            while (i < brojanaListaZensko.Count)
+            {
+                zbrojenaLista.Add(brojanaListaZensko[i].Item2);
+                i++;
+            }
+
+            while (j >= 0)
+            {
+                zbrojenaLista.Add(brojanaListaMusko[j].Item2);
+                j--;
+            }
+
+            // 7. Kreiranje nove liste sa zbrojenim vrijednostima zbrojene liste
+            List<int> konacnaLista = new List<int>();
+            i = 0;
+            j = zbrojenaLista.Count - 1;
+
+            while (i <= j) // Petlja ide do sredine liste (uključujući srednji element ako postoji)
+            {
+                int zbroj = 0;
+                if (i == j) // Ako smo na srednjem elementu (neparan broj elemenata)
+                {
+                    zbroj = zbrojenaLista[i];
+                }
+                else
+                {
+                    zbroj = zbrojenaLista[i] + zbrojenaLista[j];
+                }
+
+                // Razdvajanje dvoznamenkastih brojeva
+                if (zbroj >= 10)
+                {
+                    string zbrojStr = zbroj.ToString();
+                    foreach (char cifra in zbrojStr)
+                    {
+                        konacnaLista.Add(cifra - '0'); // Pretvaramo char u int
+                    }
+                }
+                else
+                {
+                    konacnaLista.Add(zbroj);
+                }
+
+                i++;
+                j--;
+            }
+
+            // 8. Konačni rezultat ljubavnog kalkulatora
+            List<int> finalnaLista = new List<int>();
+            i = 0;
+            j = konacnaLista.Count - 1;
+
+            while (i <= j) // Petlja ide do sredine liste (uključujući srednji element ako postoji)
+            {
+                int zbroj = 0;
+                if (i == j) // Ako smo na srednjem elementu (neparan broj elemenata)
+                {
+                    zbroj = konacnaLista[i];
+                }
+                else
+                {
+                    zbroj = konacnaLista[i] + konacnaLista[j];
+                }
+
+                // Razdvajanje dvoznamenkastih brojeva
+                if (zbroj >= 10)
+                {
+                    string zbrojStr = zbroj.ToString();
+                    foreach (char cifra in zbrojStr)
+                    {
+                        finalnaLista.Add(cifra - '0'); // Pretvaramo char u int
+                    }
+                }
+                else
+                {
+                    finalnaLista.Add(zbroj);
+                }
+
+                i++;
+                j--;
+            }
+
+            // 9. Spajanje znamenki konačnog rezultata (ako je dvoznamenkast)
+            string ljubavniRezultatString = "";
+            foreach (int cifra in finalnaLista)
+            {
+                ljubavniRezultatString += cifra.ToString();
+            }
+
+            int ljubavniRezultat = int.Parse(ljubavniRezultatString);
+
+
+            // 10. Ispis rezultata
+            Console.WriteLine("\nBroj slova iz oba imena (računato u ženskom imenu):");
+            foreach (var item in brojanaListaZensko)
+            {
+                Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
+            }
+
+            Console.WriteLine("\nBroj slova iz oba imena (računato u muškom imenu):");
+            foreach (var item in brojanaListaMusko)
+            {
+                Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
+            }
+
+            Console.WriteLine("\nKombinovana lista svih prebrojanih slova:");
+            foreach (var item in kombinovanaBrojanaLista)
+            {
+                Console.WriteLine($"Slovo '{item.Item1}' pojavljuje se {item.Item2} puta.");
+            }
+
+            Console.WriteLine("\nLista zbrojenih vrijednosti (prvi prolaz):");
+            foreach (var value in zbrojenaLista)
+            {
+                Console.WriteLine(value);
+            }
+
+            Console.WriteLine("\nKonačna lista zbrojenih vrijednosti (drugi prolaz):");
+            foreach (var value in konacnaLista)
+            {
+                Console.WriteLine(value);
+            }
+
+            Console.WriteLine("\nFinalna lista zbrojenih vrijednosti (treći prolaz):");
+            foreach (var value in finalnaLista)
+            {
+                Console.WriteLine(value);
+            }
+
+            Console.WriteLine($"\nRezultat ljubavnog kalkulatora je: {ljubavniRezultat} %");
+        }
+
+
+
+
+
         private static void GeneratorLozinke()
         {
             //1. korak ucitavanje duzine lozinke koju korisnik zeli
