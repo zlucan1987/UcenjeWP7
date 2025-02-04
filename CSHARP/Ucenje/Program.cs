@@ -2,12 +2,9 @@
 
 using Ucenje;
 
+var izbornik = new Ucenje.E20KonzolnaAplikacija.Izbornik();
 
-new Ucenje.E19GSALE.Program();
-
-
-
-
+//new Ucenje.E19GSALE.Program();
 //Q13LjubavniKalkulator.Izvedi();
 //E16Vjezbanje.Izvedi();
 //new Ucenje.E17KlasaObjekt.Program();
@@ -17,4 +14,3 @@ new Ucenje.E19GSALE.Program();
 //Q06Vjezba.Izvedi();
 //E01UlazIzlaz.Izvedi();
 //Q09Vjezba.Izvedi(new string[] { });
-
