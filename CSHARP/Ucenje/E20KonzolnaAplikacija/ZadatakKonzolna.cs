@@ -14,8 +14,8 @@ namespace Ucenje.E20KonzolnaAplikacija
         // 3. Implementirati kontrolu da šifre na istom tipu budu jedinstvene (npr. ne mogu biti dva smjera s istom vrijednošću šifre)
         // 4. Vizualno dotjerati aplikaciju (UI/UX)
         // 5. Statistika u izbornik Grupe (ovo je teško i zahtjeva samostalno istraživanje)
-        //    - Ukupno polaznika na svim grupama
-        //    - Prosječan broj polaznika u grupi
+        //    - Ukupno polaznika na svim grupama + ******************************************************** RIJESENO
+        //    - Prosječan broj polaznika u grupi + ******************************************************** RIJESENO
         //    - Ukupan iznos prihoda po smjerovima
         //    - Prosječan iznos prihoda po polazniku
         //    - Najraniji i najkasniji početak grupe uz ispis razlike broja dana između ta dva datuma

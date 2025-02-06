@@ -19,7 +19,7 @@ namespace Ucenje.E20KonzolnaAplikacija
 
         public Izbornik()
         {
-            Pomocno.DEV = false;
+            Pomocno.DEV = true;
             ObradaSmjer = new ObradaSmjer();
             ObradaPolaznik = new ObradaPolaznik();
             ObradaGrupa = new ObradaGrupa(this);
@@ -27,6 +27,8 @@ namespace Ucenje.E20KonzolnaAplikacija
             PozdravnaPoruka();
             PrikaziIzbornik();
         }
+
+       
 
         private void UcitajPodatke()
         {
@@ -51,13 +53,16 @@ namespace Ucenje.E20KonzolnaAplikacija
             Console.WriteLine("3. Grupe");
             Console.WriteLine("4. Izlaz iz programa");
             Console.WriteLine("5. Hello PDF");
+            Console.WriteLine("6. Ukupan broj polaznika");
+            Console.WriteLine("7. Izračunaj prosječan broj polaznika");
             OdabirOpcijeIzbornika();
         }
 
         private void OdabirOpcijeIzbornika()
         {
-
-            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 5))
+            var opcija = Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 7);
+            Console.WriteLine($"Odabrana opcija: {opcija}");  // Debug ispis
+            switch (opcija)
             {
                 case 1:
                     Console.Clear();
@@ -82,36 +87,32 @@ namespace Ucenje.E20KonzolnaAplikacija
                     HelloPDF();
                     PrikaziIzbornik();
                     break;
+                case 6: 
+                    Console.Clear(); 
+                    ObradaPolaznik.IspisiUkupanBrojPolaznika(); 
+                    PrikaziIzbornik(); 
+                    break;
+                case 7: 
+                    Console.Clear();
+                    double prosjek = ObradaGrupa.IzracunajProsjecanBrojPolaznika(); 
+                    Console.WriteLine($"Prosječan broj polaznika po grupi: {prosjek:F2}"); 
+                    PrikaziIzbornik();
+                    break;
+
             }
         }
 
         private void HelloPDF()
         {
-            // Create a new PDF document
+            
 
             PdfDocument document = new PdfDocument();
-
             document.Info.Title = "Created with PDFsharp";
-
-
-
-            // Create an empty page
-
             PdfPage page = document.AddPage();
-
-
-
-            // Get an XGraphics object for drawing
-
             XGraphics gfx = XGraphics.FromPdfPage(page);
-
-
-
-            // Create a font
-
             XFont font = new XFont("Verdana", 30);
 
-            // Draw the text
+            
 
 
 
@@ -136,23 +137,18 @@ namespace Ucenje.E20KonzolnaAplikacija
 
             document.Save(Path.Combine(docPath, "HelloWorld.pdf"));
 
-            // ...and start a viewer.
 
-            //Process.Start(filename);
+           
         }
 
         private void SpremiPodatke()
         {
             if (Pomocno.DEV)
             {
-                return;
+                return;  
             }
 
-            //Console.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
-
-            string docPath =
-          Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "smjerovi.json"));
             outputFile.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
             outputFile.Close();
