@@ -25,11 +25,6 @@ namespace Ucenje.E20KonzolnaAplikacija
             }
         }
 
-        public void IspisiUkupanBrojGrupa()
-        {
-            Console.WriteLine($"Ukupan broj grupa: {Grupe.Count}");
-        }
-
         private void UcitajTestnePodatke()
         {
             var polaznici = new List<Polaznik>();
@@ -86,6 +81,12 @@ namespace Ucenje.E20KonzolnaAplikacija
                     Console.Clear();
                     break;
             }
+        }
+
+
+        public void IspisiUkupanBrojGrupa()
+        {
+            Console.WriteLine($"Ukupan broj grupa: {Grupe.Count}");
         }
 
         public double IzracunajProsjecanBrojPolaznika()

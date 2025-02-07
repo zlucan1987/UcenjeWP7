@@ -76,16 +76,15 @@ namespace Ucenje.E20KonzolnaAplikacija
                     break;
                 case 5:
                     Console.Clear();
-                    break; // Povratak na glavni izbornik
+                    break; 
                 case 6:
                     Console.Clear();
                     IspisiUkupanBrojPolaznika();
                     PrikaziIzbornik();
                     break;
-                case 7:
+                //case 7:
                     Console.Clear();
                     // Izračun prosječnog broja polaznika po grupi
-                    // ... (kod za izračun prosjeka)
                     PrikaziIzbornik();
                     break;
             }
@@ -149,14 +148,23 @@ namespace Ucenje.E20KonzolnaAplikacija
 
         public void UnosNovogPolaznika()
         {
-            // ... (isti kod kao prije)
+            var noviPolaznik = new Polaznik();
+            noviPolaznik.Sifra = Polaznici.Count + 1; 
+
+            noviPolaznik.Ime = PromjeniPolje(noviPolaznik.Ime, "ime");
+            noviPolaznik.Prezime = PromjeniPolje(noviPolaznik.Prezime, "prezime");
+            noviPolaznik.Email = PromjeniPolje(noviPolaznik.Email, "email");
+            noviPolaznik.OIB = PromjeniPolje(noviPolaznik.OIB, "OIB");
+
+            Polaznici.Add(noviPolaznik);
+            Console.WriteLine("Novi polaznik uspješno unesen.");
         }
 
         private string PromjeniPolje(string currentValue, string fieldName)
         {
             while (true)
             {
-                var newValue = Pomocno.UcitajString($"Unesi novi {fieldName} polaznika (Enter za preskakanje):", 50, false);
+                var newValue = Pomocno.UcitajString($"Unesi novo {fieldName} polaznika (Enter za preskakanje):", 50, false);
                 if (string.IsNullOrEmpty(newValue) || !string.IsNullOrWhiteSpace(newValue))
                 {
                     return string.IsNullOrEmpty(newValue) ? currentValue : newValue;
@@ -188,7 +196,7 @@ namespace Ucenje.E20KonzolnaAplikacija
 
                 Console.WriteLine("Podaci polaznika uspješno promijenjeni.");
             }
-            catch (ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException) // try-catch blok za hvatanje iznimke a argument se izvrsava unutar catch-a AKO se iznimka dogodi
             {
                 Console.WriteLine("Neispravan unos. Molimo pokušajte ponovno.");
                 PromjeniPodatakPolaznika(); // Ponovi promjenu

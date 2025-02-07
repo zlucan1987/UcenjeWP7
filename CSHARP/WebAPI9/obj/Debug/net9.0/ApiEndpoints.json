@@ -1,0 +1,127 @@
+[
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "HelloWorld",
+    "RelativePath": "api/v1/HttpMetode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "Post",
+    "RelativePath": "api/v1/HttpMetode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "osoba",
+        "Type": "WebAPI9.Models.Osoba",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "Put",
+    "RelativePath": "api/v1/HttpMetode",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "osoba",
+        "Type": "WebAPI9.Models.Osoba",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/HttpMetode",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sifra",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "GetJson",
+    "RelativePath": "api/v1/HttpMetode/json",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "godina",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.HttpMetodeController",
+    "Method": "HelloWorld",
+    "RelativePath": "api/v1/HttpMetode/pozdrav",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ime",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebAPI9.Controllers.SmjerController",
+    "Method": "GetSmjerovi",
+    "RelativePath": "api/v1/Smjer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
