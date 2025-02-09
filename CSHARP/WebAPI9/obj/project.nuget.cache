@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LoraR6V7FAA=",
+  "dgSpecHash": "WmuQHoxCMm8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\UcenjeWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
+  "projectFilePath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\EdunovaWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucko\\.nuget\\packages\\faker.net\\2.0.163\\faker.net.2.0.163.nupkg.sha512",
     "C:\\Users\\lucko\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",

@@ -685,11 +685,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\UcenjeWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
+      "projectUniqueName": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\EdunovaWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
       "projectName": "WebAPI9",
-      "projectPath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\UcenjeWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
+      "projectPath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\EdunovaWP7\\CSHARP\\WebAPI9\\WebAPI9.csproj",
       "packagesPath": "C:\\Users\\lucko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\UcenjeWP7\\CSHARP\\WebAPI9\\obj\\",
+      "outputPath": "C:\\Users\\lucko\\OneDrive\\Documents\\GitHub\\EdunovaWP7\\CSHARP\\WebAPI9\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
